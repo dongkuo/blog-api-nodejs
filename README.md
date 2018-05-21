@@ -84,5 +84,42 @@
 
 ## 数据库表
 
-⏳ 待补充 
+### user
+
+| 名称        | 类型        | 是否必须 | 说明                                 |
+| ----------- | ----------- | -------- | ------------------------------------ |
+| id          | bigint      | 是       | 主键id                               |
+| account     | varchar(30) | 是       | 账号                                 |
+| password    | varchar(36) | 是       | 密码                                 |
+| nickname    | varchar(30) | 否       | 昵称                                 |
+| status      | tinyint     | 是       | 用户状态。-1：删除；0：禁用；1：正常 |
+| create_time | timestamp   | 是       | 创建时间。                           |
+
+
+
+### article_category
+
+| 名称         | 类型        | 是否必须 | 说明                            |
+| ------------ | ----------- | -------- | ------------------------------- |
+| id           | bigint      | 是       | 主键id                          |
+| name         | varchar(20) | 是       | 分类名称                        |
+| order_weight | int         | 是       | 排序权重。默认值为0，越小越靠前 |
+| create_time  | timestamp   | 是       | 记录创建时间                    |
+
+### article
+
+| 名称             | 类型         | 是否必须 | 说明                                |
+| ---------------- | ------------ | -------- | ----------------------------------- |
+| id               | bigint       | 是       | 主键id                              |
+| category_id      | bigint       | 是       | 文章分类id。关联article_category.id |
+| author_id        | bigint       | 是       | 作者id。关联user.id                 |
+| title            | varchar(100) | 是       | 文章标题                            |
+| cover_image      | varchar(500) | 否       | 封面图片URL                         |
+| cover_caption    | varchar(20)  | 否       | 封面说明                            |
+| summary          | varchar(300) | 是       | 文章摘要                            |
+| content_markdown | text         | 否       | 文章内容。markdown格式              |
+| content_html     | text         | 否       | 文章内容。html格式                  |
+| publish_time     | timestamp    | 是       | 发表时间                            |
+| create_time      | timestamp    | 是       | 记录创建时间                        |
+| update_time      | timestamp    | 是       | 记录最近修改时间                    |
 
