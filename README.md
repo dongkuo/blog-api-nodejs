@@ -86,16 +86,16 @@
 
 ### user
 
-| 名称        | 类型        | 是否必须 | 说明                                 |
-| ----------- | ----------- | -------- | ------------------------------------ |
-| id          | bigint      | 是       | 主键id                               |
-| account     | varchar(30) | 是       | 账号                                 |
-| password    | varchar(36) | 是       | 密码                                 |
-| nickname    | varchar(30) | 否       | 昵称                                 |
-| status      | tinyint     | 是       | 用户状态。-1：删除；0：禁用；1：正常 |
-| create_time | timestamp   | 是       | 创建时间。                           |
-
-
+| 名称        | 类型         | 是否必须 | 说明                                 |
+| ----------- | ------------ | -------- | ------------------------------------ |
+| id          | bigint       | 是       | 主键id                               |
+| username    | varchar(30)  | 是       | 用户名                               |
+| password    | varchar(36)  | 是       | 密码                                 |
+| nickname    | varchar(30)  | 是       | 昵称                                 |
+| email       | varchar(100) | 否       | 邮箱                                 |
+| status      | tinyint      | 是       | 用户状态。-1：删除；0：禁用；1：正常 |
+| create_time | timestamp    | 是       | 创建时间                             |
+| role        | varchar(20)  | 是       | 角色                                 |
 
 ### article_category
 
