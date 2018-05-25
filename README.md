@@ -84,7 +84,7 @@
 
 ## 数据库表
 
-### user
+### user（用户）
 
 | 名称        | 类型         | 是否必须 | 说明                                 |
 | ----------- | ------------ | -------- | ------------------------------------ |
@@ -93,11 +93,12 @@
 | password    | varchar(36)  | 是       | 密码                                 |
 | nickname    | varchar(30)  | 是       | 昵称                                 |
 | email       | varchar(100) | 否       | 邮箱                                 |
+| avatar      | varchar(500) | 否       | 头像url                              |
 | status      | tinyint      | 是       | 用户状态。-1：删除；0：禁用；1：正常 |
 | create_time | timestamp    | 是       | 创建时间                             |
 | role        | varchar(20)  | 是       | 角色                                 |
 
-### article_category
+### category（文章分类）
 
 | 名称         | 类型        | 是否必须 | 说明                            |
 | ------------ | ----------- | -------- | ------------------------------- |
@@ -106,13 +107,13 @@
 | order_weight | int         | 是       | 排序权重。默认值为0，越小越靠前 |
 | create_time  | timestamp   | 是       | 记录创建时间                    |
 
-### article
+### article（文章）
 
 | 名称             | 类型         | 是否必须 | 说明                                |
 | ---------------- | ------------ | -------- | ----------------------------------- |
 | id               | bigint       | 是       | 主键id                              |
 | category_id      | bigint       | 是       | 文章分类id。关联article_category.id |
-| author_id        | bigint       | 是       | 作者id。关联user.id                 |
+| uid              | bigint       | 是       | 作者id。关联user.id                 |
 | title            | varchar(100) | 是       | 文章标题                            |
 | cover_image      | varchar(500) | 否       | 封面图片URL                         |
 | cover_caption    | varchar(20)  | 否       | 封面说明                            |
@@ -122,4 +123,18 @@
 | publish_time     | timestamp    | 是       | 发表时间                            |
 | create_time      | timestamp    | 是       | 记录创建时间                        |
 | update_time      | timestamp    | 是       | 记录最近修改时间                    |
+| status           | tinyint      | 是       | 文章状态。-1：删除；1：正常         |
+
+### message（评论、回复、留言……）
+
+| 名称          | 类型         | 是否必须 | 说明                                                         |
+| ------------- | ------------ | -------- | ------------------------------------------------------------ |
+| id            | bigint       | 是       | 主键id                                                       |
+| associated_id | bigint       | 是       | 关联的id。该值为评论关联对象的id。如：对于某文章的评论，该值为文章的id |
+| parent_id     | bigint       | 是       | 父评论id。若该评论是“评论的回复”，该值为对应评论的id；否则为0； |
+| content       | varchar(300) | 是       | 评论内容                                                     |
+| uid           | bigint       | 是       | 评论作者id                                                   |
+| create_time   | timestamp    | 是       | 创建时间                                                     |
+| update_time   | timestamp    | 是       | 最近更新时间                                                 |
+| status        | tinyint      | 是       | 评论状态。-1：删除；1：正常                                  |
 
