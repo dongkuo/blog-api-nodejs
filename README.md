@@ -1,6 +1,6 @@
 # blog-api-nodejs
 
-🔥 采用Node.js编写的博客后端API。欢迎提交代码 🚀 :-p
+🚀 采用Node.js编写的博客后端API。欢迎提交代码 :-p
 
 ## 接口约定
 
@@ -63,21 +63,21 @@
 
 | 名称         | 权限 | 请求方式 | 请求路径        | 完成情况 |
 | ------------ | ------------ | -------- | --------------- | -------- |
-| 列取文章分类 | **ALL** | GET      | /category/list  | 🔨 |
-| 添加文章分类 | **ADMIN** | POST     | /category/add   | 🔨 |
-| 删除文章分类 | **ADMIN&OWNER** | GET      | /category/delete | 🔨 |
-| 修改文章分类 | **ADMIN&OWNER** | POST     | /category/update | 🔨 |
+| 列取文章分类 | **ALL** | GET      | /categories | 🔨 |
+| 添加文章分类 | **ADMIN** | POST     | /categories | 🔨 |
+| 删除文章分类 | **ADMIN&OWNER** | DELETE | /categories/{id} | 🔨 |
+| 修改文章分类 | **ADMIN&OWNER** | PUT   | /categories/{id} | 🔨 |
 |  |  |  |  |  |
-| 列取文章     | **ALL**  | GET      | /article/list   | ⏳ |
-| 获取文章详情 | **ALL**  | GET      | /article/get    | ⏳ |
-| 添加文章 | **ADMIN** | POST | /article/add | ⏳ |
-| 删除文章 | **ADMIN&OWNER** | GET | /article/delete | ⏳ |
-| 修改文章 | **ADMIN&OWNER** | POST | /article/update | ⏳ |
+| 列取文章     | **ALL**  | GET      | /articles | ⏳ |
+| 获取文章详情 | **ALL**  | GET      | /articles/{id} | ⏳ |
+| 添加文章 | **ADMIN** | POST | /articles | ⏳ |
+| 删除文章 | **ADMIN&OWNER** | DELETE | /articles/{id} | ⏳ |
+| 修改文章 | **ADMIN&OWNER** | PUT | /articles/{id} | ⏳ |
 |  |  |  |  |  |
-| 列取文章评论 | **ALL** | GET | /comment/list | ⏳ |
-| 添加文章评论 | **ADMIN**、**MEMBER** | POST | /comment/add | ⏳ |
-| 修改文章评论 | **ADMIN**、**MEMBER&OWNER** | POST | /comment/update | ⏳ |
-| 删除文章评论 | **ADMIN**、**MEMBER&OWNER** | DELETE | /comment/delete | ⏳ |
+| 列取文章评论 | **ALL** | GET | /comments | ⏳ |
+| 添加文章评论 | **ADMIN**、**MEMBER** | POST | /comments | ⏳ |
+| 修改文章评论 | **ADMIN**、**MEMBER&OWNER** | PUT | /comments/{id} | ⏳ |
+| 删除文章评论 | **ADMIN**、**MEMBER&OWNER** | DELETE | /comments/{id} | ⏳ |
 
 ## 接口明细
 

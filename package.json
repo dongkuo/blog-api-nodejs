@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/dongkuo/blog-api-nodejs#readme",
   "dependencies": {
+    "knex": "^0.14.6",
     "koa": "^2.5.1",
     "koa-router": "^7.4.0"
   }
