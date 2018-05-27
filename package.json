@@ -1,0 +1,30 @@
+{
+  "name": "blog-api-nodejs",
+  "version": "1.0.0",
+  "description": "a blog's back end built based on Node.js.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dongkuo/blog-api-nodejs.git"
+  },
+  "keywords": [
+    "blog",
+    "koa",
+    "api",
+    "nodejs"
+  ],
+  "author": "derker",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/dongkuo/blog-api-nodejs/issues"
+  },
+  "homepage": "https://github.com/dongkuo/blog-api-nodejs#readme",
+  "dependencies": {
+    "koa": "^2.5.1",
+    "koa-router": "^7.4.0"
+  }
+}
