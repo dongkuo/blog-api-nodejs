@@ -33,9 +33,9 @@
 
     ```json
     {
-        "code": Number,
-        "error": String,
-        "data": Object
+        "code": [Number],
+        "error": [String],
+        "data": [Object]
     }
     ```
 
@@ -43,44 +43,125 @@
 
 ## 角色权限
 
-#### 角色
+### 用户角色
 
-定义如下几种角色：
+定义如下几种**用户角色**：
 
-- **ROOT**：超级用户，该角色下仅有一名用户，具有一切的权限；
-- **ADMIN**：代表管理员用户
-- **MEMBER**：代表登录用户
-- **VISITOR**：代表未登录用户
+- **ROOT (0)**：超级用户，该角色下仅有一名用户，具有一切的权限；
+- **ADMIN (1)**：代表管理员用户
+- **MEMBER (2)**：代表登录用户
+- **VISITOR (4)**：代表未登录用户
+
+### 用户代词
+
+定义如下两种**用户代词**：
+
 - **ALL**：代表一切用户，所有用户都在此角色下
 - **OWNER**：代表资源创建者本人，该角色下仅有“自己”一个用户。
-
-#### 权限
-
-接口权限控制的最小颗粒度是角色。一个用户是否拥有调用某接口的权限由其所扮演的角色决定。特别地，定义
 
 ## 接口清单 
 
 | 名称         | 权限 | 请求方式 | 请求路径        | 完成情况 |
 | ------------ | ------------ | -------- | --------------- | -------- |
-| 列取文章分类 | **ALL** | GET      | category/list   | ⏳ |
-| 添加文章分类 | **ADMIN** | POST     | category/add    | ⏳ |
-| 删除文章分类 | **ADMIN** | GET      | category/delete | ⏳ |
-| 修改文章分类 | **ADMIN** | POST     | category/update | ⏳ |
+| 列取文章分类 | **ALL** | GET      | /category/list  | 🔨 |
+| 添加文章分类 | **ADMIN** | POST     | /category/add   | 🔨 |
+| 删除文章分类 | **ADMIN&OWNER** | GET      | /category/delete | 🔨 |
+| 修改文章分类 | **ADMIN&OWNER** | POST     | /category/update | 🔨 |
 |  |  |  |  |  |
-| 列取文章     | **ALL**  | GET      | article/list    | ⏳ |
-| 获取文章详情 | **ALL**  | GET      | article/get     | ⏳ |
-| 添加文章 | **ADMIN** | POST | article/add | ⏳ |
-| 删除文章 | **OWNER** | GET | article/delete | ⏳ |
-| 修改文章 | **OWNER** | POST | article/update | ⏳ |
+| 列取文章     | **ALL**  | GET      | /article/list   | ⏳ |
+| 获取文章详情 | **ALL**  | GET      | /article/get    | ⏳ |
+| 添加文章 | **ADMIN** | POST | /article/add | ⏳ |
+| 删除文章 | **ADMIN&OWNER** | GET | /article/delete | ⏳ |
+| 修改文章 | **ADMIN&OWNER** | POST | /article/update | ⏳ |
 |  |  |  |  |  |
-| 列取文章评论 | **ALL** | GET | comment/list | ⏳ |
-| 添加文章评论 | **ADMIN**、**MEMBER** | POST | comment/add | ⏳ |
-| 修改文章评论 | **ADMIN**、**OWNER** | POST | comment/update | ⏳ |
-| 删除文章评论 | **ADMIN**、**OWNER** | DELETE | comment/delete | ⏳ |
+| 列取文章评论 | **ALL** | GET | /comment/list | ⏳ |
+| 添加文章评论 | **ADMIN**、**MEMBER** | POST | /comment/add | ⏳ |
+| 修改文章评论 | **ADMIN**、**MEMBER&OWNER** | POST | /comment/update | ⏳ |
+| 删除文章评论 | **ADMIN**、**MEMBER&OWNER** | DELETE | /comment/delete | ⏳ |
 
 ## 接口明细
 
-⏳ 待补充
+### 列取文章分类
+
+**请求：**
+
+```http
+GET /category/list
+```
+
+**响应：**
+
+```json
+[
+    {
+        "id": 1,
+        "name": "写作",
+        "url": "/writing"
+    },
+    {
+        "id": 2,
+    	"name": "编程",
+        "url": "/programing"
+    }
+]
+```
+
+### 添加文章分类
+
+**请求：**
+
+```http
+POST /category/add
+
+{
+    "name": "写作",
+    "url": "/writing"
+}
+```
+
+**响应：**
+
+```json
+{
+	"id": 3
+}
+```
+
+### 删除文章分类
+
+**请求：**
+
+```http
+GET /category/delete?id=3
+```
+
+**响应：**
+
+```json
+<Empty>
+```
+
+### 修改文章分类
+
+**请求：**
+
+```http
+POST /category/update
+
+{
+	"id": 2,
+    "name": "写作",
+    "url": "/writing"
+}
+```
+
+**响应：**
+
+```json
+<Empty>
+```
+
+
 
 ## 数据库表
 
@@ -96,16 +177,17 @@
 | avatar      | varchar(500) | 否       | 头像url                              |
 | status      | tinyint      | 是       | 用户状态。-1：删除；0：禁用；1：正常 |
 | create_time | timestamp    | 是       | 创建时间                             |
-| role        | varchar(20)  | 是       | 角色                                 |
+| role        | tinyint      | 是       | 角色。取值见[角色](#角色)            |
 
 ### category（文章分类）
 
-| 名称         | 类型        | 是否必须 | 说明                            |
-| ------------ | ----------- | -------- | ------------------------------- |
-| id           | bigint      | 是       | 主键id                          |
-| name         | varchar(20) | 是       | 分类名称                        |
-| order_weight | int         | 是       | 排序权重。默认值为0，越小越靠前 |
-| create_time  | timestamp   | 是       | 记录创建时间                    |
+| 名称         | 类型         | 是否必须 | 说明                            |
+| ------------ | ------------ | -------- | ------------------------------- |
+| id           | bigint       | 是       | 主键id                          |
+| name         | varchar(20)  | 是       | 分类名称                        |
+| url          | varchar(100) | 是       | 分类对应url                     |
+| order_weight | int          | 是       | 排序权重。默认值为0，越小越靠前 |
+| create_time  | timestamp    | 是       | 记录创建时间                    |
 
 ### article（文章）
 
