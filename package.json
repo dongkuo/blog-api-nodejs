@@ -4,7 +4,7 @@
   "description": "a blog's back end built based on Node.js.",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,6 +26,7 @@
   "dependencies": {
     "knex": "^0.14.6",
     "koa": "^2.5.1",
-    "koa-router": "^7.4.0"
+    "koa-router": "^7.4.0",
+    "sqlite3": "^4.0.2"
   }
 }
