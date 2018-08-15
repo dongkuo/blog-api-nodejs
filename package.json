@@ -4,7 +4,7 @@
   "description": "a blog's back end built based on Node.js.",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "forever stop src/index.js & forever start src/index.js",
     "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
