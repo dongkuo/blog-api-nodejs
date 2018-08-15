@@ -14,7 +14,7 @@ const swaggerJSDoc = require('swagger-jsdoc')
 const config = require('../config')
 
 const router = new Router()
-const BASE_URL = `/api/v1/swagger`
+const BASE_URL = `${config.prefix}/swagger`
 
 
 // -- setup up swagger-jsdoc --
