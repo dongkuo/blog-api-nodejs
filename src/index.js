@@ -1,8 +1,9 @@
 const Koa = require('koa')
+const path = require('path')
 const config = require('./config')
 const swagger = require('./routes/swagger')
 const category = require('./routes/category')
-const path = require('path')
+const error = require('./routes/error')
 
 const app = new Koa()
 
@@ -14,6 +15,9 @@ app.use(swagger.routes())
 
 // 文章分类路由
 app.use(category.routes())
+
+// 错误路由
+app.use(error)
 
 const server = app.listen({
   host: config.host,
