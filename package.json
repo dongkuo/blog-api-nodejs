@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "forever stop src/index.js & forever start src/index.js",
-    "dev": "nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
