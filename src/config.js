@@ -10,7 +10,7 @@
 const config = {
   host: process.env.HOST || "127.0.0.1",
   port: process.env.PORT || 3000,
-  prefix: '/api/v1'
+  prefix: '/v1'
 }
 
 module.exports = config
