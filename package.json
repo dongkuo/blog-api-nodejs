@@ -4,9 +4,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "forever start bin/www",
-    "dev": "./node_modules/.bin/nodemon bin/www",
-    "prd": "pm2 restart bin/www"
+    "start": "pm2 restart bin/www",
+    "dev": "./node_modules/.bin/nodemon bin/www"
   },
   "dependencies": {
     "debug": "^2.6.3",
